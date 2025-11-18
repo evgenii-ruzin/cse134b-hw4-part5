@@ -1,21 +1,13 @@
 ---
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 import Layout from "../layouts/Layout.astro";
 import '../styles/layout.css';
-import Squad from "../components/Squad.astro";
-const team = []
-for (let i = 0; i < 11; i++) {
-    team.push({number: i, name: 'John Doe', position: 'GK'});
-}
 ---
 
 <Layout title="Home">
     <div id="content-container">
         <h1>Welcome to the world of soccer!</h1>
         <p>
-            On this website you can find information about the most famous soccer players, leagues, and tournaments. <br>Note that some information can be outdated.
+            On this website you can find information about the most famous soccer players, leagues, and tournaments. <br><strong>Note that some information can be outdated.</strong>
         </p>
     </div>
 </Layout>

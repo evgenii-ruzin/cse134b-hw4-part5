@@ -1,0 +1,29 @@
+---
+
+import Layout from "../layouts/Layout.astro";
+
+const playerFiles = import.meta.glob('../data/players/*.txt', {
+    query: '?raw',
+    import: 'default',
+    eager: true
+});
+
+const players = Object.entries(playerFiles).map(([path, content]) => {
+    const slug = path.split('/').pop().replace('.txt', '');
+    const playerName = content.split('\n')[0];
+    return { slug, name: playerName };
+});
+---
+
+<Layout title="Players">
+    <div id="content-container">
+        <h1>Players</h1>
+        <ul>
+            {players.map(player => (
+                    <li>
+                        <a href={`/players/${player.slug}`}>{player.name}</a>
+                    </li>
+            ))}
+        </ul>
+    </div>
+</Layout>0

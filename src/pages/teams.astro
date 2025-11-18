@@ -1,5 +1,4 @@
 ---
-
 import Layout from "../layouts/Layout.astro";
 
 const teamFiles = import.meta.glob('../data/teams/*.txt', {
@@ -8,10 +7,9 @@ const teamFiles = import.meta.glob('../data/teams/*.txt', {
     eager: true
 });
 
-// Create array of teams with slug and name
 const teams = Object.entries(teamFiles).map(([path, content]) => {
     const slug = path.split('/').pop().replace('.txt', '');
-    const teamName = content.split('\n')[0]; // First line is team name
+    const teamName = content.split('\n')[0];
     return { slug, name: teamName };
 });
 ---

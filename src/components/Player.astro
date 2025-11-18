@@ -1,0 +1,19 @@
+---
+import Bio from './Bio.astro'
+import Logo from './Logo.astro'
+import PlayerSum from './PlayerSum.astro'
+
+const { data } = Astro.props;
+const lines = data.split('\n')
+const playerName = lines[0]
+const playerSum = lines[1]
+const playerPhoto = lines[2]
+const playerBio = lines[3]
+---
+
+<div id="content-container">
+    <h1>{playerName}</h1>
+    <Logo url={playerPhoto} type="player-photo"/>
+    <PlayerSum player={playerSum} />
+    <Bio bio={playerBio} />
+</div>

@@ -1,8 +1,8 @@
 ---
-const { url } = Astro.props
+const { url, type } = Astro.props
 ---
 
-<img src={url} alt="team-logo" class="team-logo" />
+<img src={url} alt={type} class={type} />
 
 <style>
     .team-logo {

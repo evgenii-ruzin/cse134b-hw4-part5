@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import Player from "../../components/Player.astro"
+
+export async function getStaticPaths() {
+
+    const playerFiles = import.meta.glob('../../data/players/*.txt', {
+        query: '?raw',
+        import: 'default',
+        eager: true
+    });
+
+    return Object.entries(playerFiles).map(([path, content]) => {
+        const slug = path.split('/').pop().replace('.txt', '');
+
+        const playerName = content.split('\n')[0];
+
+        return {
+            params: { slug },
+            props: {
+                data: content,
+                playerName: playerName
+            }
+        };
+    });
+}
+
+const { data, playerName } = Astro.props;
+---
+
+<Layout title={playerName}>
+    <Player data={data} />
+</Layout>
+
+<style>
+
+</style>
