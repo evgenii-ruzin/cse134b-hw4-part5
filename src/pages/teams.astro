@@ -1,0 +1,30 @@
+---
+
+import Layout from "../layouts/Layout.astro";
+
+const teamFiles = import.meta.glob('../data/teams/*.txt', {
+    query: '?raw',
+    import: 'default',
+    eager: true
+});
+
+// Create array of teams with slug and name
+const teams = Object.entries(teamFiles).map(([path, content]) => {
+    const slug = path.split('/').pop().replace('.txt', '');
+    const teamName = content.split('\n')[0]; // First line is team name
+    return { slug, name: teamName };
+});
+---
+
+<Layout title="Teams">
+    <div id="content-container">
+        <h1>Teams</h1>
+        <ul>
+            {teams.map(team => (
+                    <li>
+                        <a href={`/teams/${team.slug}`}>{team.name}</a>
+                    </li>
+            ))}
+        </ul>
+    </div>
+</Layout>0

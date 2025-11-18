@@ -1,0 +1,39 @@
+---
+const { squad } = Astro.props;
+const players = [];
+squad.forEach(line => {
+    const player = line.split(' ');
+    players.push({position: player[0], name: player[1], country: player[2]})
+});
+---
+<div id="squad">
+    <table>
+        <caption>
+            Squad
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">Position</th>
+                <th scope="col">Name</th>
+                <th scope="col">Country</th>
+            </tr>
+        </thead>
+        <tbody>
+        {players.map(player => (
+            <tr>
+                <td>{player.position}</td>
+                <td>{player.name}</td>
+                <td>{player.country}</td>
+            </tr>
+        ))}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    #squad {
+        table {
+            border: 1px solid black;
+        }
+    }
+</style>
